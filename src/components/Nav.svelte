@@ -2,11 +2,43 @@
 	export let segment;
 </script>
 
+<nav>
+	<h1><a href="dashboard">timebank</a></h1>
+	<ul>
+		<li><a aria-current="{segment === 'login' ? 'page' : undefined}" href=".">Sign In</a></li>
+		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
+
+		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
+		     the blog data when we hover over the link or tap it on a touchscreen -->
+<!--		<li><a rel=prefetch aria-current="{segment === 'blog' ? 'page' : undefined}" href="blog">blog</a></li>-->
+	</ul>
+</nav>
+
 <style>
 	nav {
+		display: flex;
+		justify-content: space-between;
 		border-bottom: 1px solid rgba(255,62,0,0.1);
 		font-weight: 300;
-		padding: 0 1em;
+		padding-left: 10px;
+		box-sizing: border-box;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 50px;
+		z-index: 100;
+		width: 100%;
+		background-color: #fff;
+	}
+
+	h1 {
+		margin-bottom: 0;
+		font-weight: 700;
+		font-size: 20px;
+		display: flex;
+		align-self: center;
+		font-style: italic;
+		color: var(--primary-color);
 	}
 
 	ul {
@@ -46,15 +78,8 @@
 		padding: 1em 0.5em;
 		display: block;
 	}
+
+	h1 > a {
+		padding: 0;
+	}
 </style>
-
-<nav>
-	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">home</a></li>
-		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch aria-current="{segment === 'blog' ? 'page' : undefined}" href="blog">blog</a></li>
-	</ul>
-</nav>

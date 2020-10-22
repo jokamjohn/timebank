@@ -1,50 +1,66 @@
 <script>
-	import successkid from 'images/successkid.jpg';
+
 </script>
 
+
+<svelte:head>
+	<title>Sign Up | Time Bank</title>
+</svelte:head>
+
+<div class="main">
+	<h1>Login</h1>
+
+	<div>
+		<form action="">
+			<div>
+				<label for="email">
+					Email Address:
+					<input id="email" type="email" placeholder="example@gmail.com">
+				</label>
+			</div>
+
+			<div>
+				<label for="password">
+					Password:
+					<input id="password" type="password" >
+				</label>
+			</div>
+
+			<div>
+				<button type="submit" class="submit">Sign In</button>
+			</div>
+		</form>
+	</div>
+</div>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
+	.main {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	label {
+		display: flex;
+		flex-direction: column;
+		color: var(--secondary-color);
 	}
 
 	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
 		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
+		text-align: center;
 	}
 
-	p {
-		margin: 1em auto;
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
+	.submit {
+		width: 15.8em;
+		padding: 0.8em 0;
 	}
 </style>
 
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
-
-<h1>Great success!</h1>
-
-<figure>
-	<img alt="Success Kid" src="{successkid}">
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
