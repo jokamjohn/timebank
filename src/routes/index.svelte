@@ -1,4 +1,20 @@
 <script>
+	import { goto } from '@sapper/app';
+	import {signInUser} from "../utils/firebase";
+
+	let email = '';
+	let password = '';
+	let error = '';
+
+	async function login() {
+		try {
+			await signInUser(email, password);
+			goto('/dashboard');
+		} catch (e) {
+			error = e.message;
+			console.log('login error', e)
+		}
+	}
 
 </script>
 
@@ -11,23 +27,23 @@
 	<h1>Login</h1>
 
 	<div>
-		<form action="">
+		<form action="" on:submit|preventDefault>
 			<div>
 				<label for="email">
 					Email Address:
-					<input id="email" type="email" placeholder="example@gmail.com">
+					<input id="email" type="email" bind:value={email} placeholder="example@gmail.com">
 				</label>
 			</div>
 
 			<div>
 				<label for="password">
 					Password:
-					<input id="password" type="password" >
+					<input id="password" type="password"  bind:value={password}>
 				</label>
 			</div>
 
 			<div>
-				<button type="submit" class="submit">Sign In</button>
+				<button type="submit" class="submit" on:click={login}>Sign In</button>
 			</div>
 		</form>
 	</div>

@@ -1,11 +1,25 @@
 <script>
+	import { goto, stores } from '@sapper/app';
+	const { preloading, page, session } = stores();
+	import { signOutUser } from "../utils/firebase";
+
 	export let segment;
+
+	async function logout() {
+		await signOutUser();
+		goto('/')
+	}
 </script>
 
 <nav>
 	<h1><a href="dashboard">timebank</a></h1>
 	<ul>
-		<li><a aria-current="{segment === 'login' ? 'page' : undefined}" href=".">Sign In</a></li>
+		{#if $session.user}
+			<li><a aria-current="{segment === 'dashboard' ? 'page' : undefined}" href="dashboard">Dashboard</a></li>
+			<li><button on:click={logout}>logout</button></li>
+		{:else}
+			<li><a aria-current="{segment === 'login' ? 'page' : undefined}" href=".">Sign In</a></li>
+		{/if}
 		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches

@@ -30,5 +30,34 @@
 	<!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
 	<div id="sapper">%sapper.html%</div>
+
+	<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+	<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+	<!-- Add Firebase products that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+	<script>
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		var firebaseConfig = {
+			apiKey: "AIzaSyBOc4Al2il7opa_i-uTKNQx8AcPMkQ_-Ys",
+			authDomain: "timebank-ug.firebaseapp.com",
+			databaseURL: "https://timebank-ug.firebaseio.com",
+			projectId: "timebank-ug",
+			storageBucket: "timebank-ug.appspot.com",
+			messagingSenderId: "34209197167",
+			appId: "1:34209197167:web:90697afb3c58526f7eb19a",
+			measurementId: "G-VFPRKLBQC1"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+	</script>
 </body>
 </html>
