@@ -14,9 +14,9 @@ export default polka() // You can also use Express
         sirv('static', {dev}),
         sapper.middleware({
           session: (req, res) => {
-          	if (req.cookies.token) {
+          	if (req.cookies.userDetails) {
           		return {
-          			user: req.cookies.token
+          			user: req.cookies.userDetails
 				}
 			}
           	return {
