@@ -1,12 +1,30 @@
 <script context="module">
-    export async function preload(page, session) {
-      const { user } = session;
-      if (!user) return this.redirect(302, '/');
+  export async function preload(page, session) {
+    const { user } = session;
+
+    if (!user) {
+      return this.redirect(302, '/login')
     }
+
+    return { user };
+  }
 </script>
 
 <script>
-    import JobCard from '../../components/dashboard/JobCard.svelte'
+  import { onMount } from 'svelte';
+  import {getAllJobs} from "../../utils/firebase";
+  import JobCard from '../../components/dashboard/JobCard.svelte'
+  import { ROUTE_JOB_ADD } from "../../utils/constants";
+
+  let jobs = []
+
+  onMount(async () => {
+    try {
+      jobs = await getAllJobs();
+    } catch (e) {
+      jobs = [];
+    }
+  })
 
 </script>
 
@@ -21,18 +39,20 @@
             <div>0</div>
         </div>
         <div class="add">
-            <button>Add Job</button>
+            <a href={ROUTE_JOB_ADD}>Add Job</a>
         </div>
     </div>
 
-    <JobCard />
-    <JobCard />
-    <JobCard />
-    <JobCard />
-    <JobCard />
-    <JobCard />
-    <JobCard />
-    <JobCard />
+    <div>
+        {#if jobs.length === 0}
+            <div>No jobs available</div>
+        {:else}
+            {#each jobs as job}
+                <JobCard job={job} />
+            {/each}
+        {/if}
+    </div>
+
 
 </div>
 
@@ -45,9 +65,9 @@
     .count {
         display: flex;
         width: 50%;
-        margin-left: 10px;
         padding-left: 20px;
         padding-right: 10px;
+        margin-left: 10px;
         margin-right: 10px;
         justify-content: space-between;
         color: #fff;
@@ -59,14 +79,16 @@
     .add {
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 50%;
+        background-color: var(--accent-color-1);
+        margin-right: 10px;
     }
 
-    button {
+    a {
         padding-left: 50px;
         padding-right: 50px;
         color: var(--secondary-color);
         font-weight: 700;
-        background-color: var(--accent-color-1);
     }
 </style>

@@ -13,7 +13,8 @@
     "cookie-parser": "^1.4.5",
     "js-cookie": "^2.2.1",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

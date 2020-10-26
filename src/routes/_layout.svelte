@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import Cookies from 'js-cookie';
 	import Nav from '../components/Nav.svelte';
-	import {COOKIE_TOKEN, TOKEN_REFRESH_TIME} from "../utils/constants";
+	import {COOKIE_DETAILS, TOKEN_REFRESH_TIME} from "../utils/constants";
 	import {forceTokenRefresh} from "../utils/firebase";
 
 	export let segment;
@@ -15,15 +15,26 @@
 
 			if (!user) {
 				$session.user = false;
-				Cookies.set(COOKIE_TOKEN, false);
+				Cookies.set(COOKIE_DETAILS, false);
 				return;
 			}
 
 			const token = await user.getIdToken();
 
-			$session.user = token;
+			const profile = {
+				email: user.email,
+				name: user.displayName || '',
+				uid: user.uid
+			};
 
-			Cookies.set(COOKIE_TOKEN, token);
+			const userDetails = {
+				token,
+				profile
+			}
+
+			$session.user = userDetails
+
+			Cookies.set(COOKIE_DETAILS, userDetails);
 
 			window.timeoutId = setTimeout(() => {
 				forceTokenRefresh();

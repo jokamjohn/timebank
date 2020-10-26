@@ -1,18 +1,22 @@
+<script>
+    export let job;
+</script>
+
 <div class="container">
     <div class="title">
-        <h2>My Job Title</h2>
+        <h2>{job.title}</h2>
     </div>
     <div class="row">
         <p class="label">Duration</p>
-        <p class="values">2 Hours</p>
+        <p class="values">{job.duration}</p>
     </div>
     <div class="row">
         <p class="label">Category</p>
-        <p class="values">IT</p>
+        <p class="values">{job.category}</p>
     </div>
     <div class="row">
         <p class="label">Location</p>
-        <p class="values">Bulabira road, Najjera</p>
+        <p class="values">{job.location}</p>
     </div>
     <div class="primary-button-container">
         <button class="primary-button">Apply</button>

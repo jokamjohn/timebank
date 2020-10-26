@@ -12,13 +12,13 @@
 </script>
 
 <nav>
-	<h1><a href="dashboard">timebank</a></h1>
+	<h1><a href="/">timebank</a></h1>
 	<ul>
 		{#if $session.user}
 			<li><a aria-current="{segment === 'dashboard' ? 'page' : undefined}" href="dashboard">Dashboard</a></li>
 			<li><button on:click={logout}>logout</button></li>
 		{:else}
-			<li><a aria-current="{segment === 'login' ? 'page' : undefined}" href=".">Sign In</a></li>
+			<li><a aria-current="{segment === 'login' ? 'page' : undefined}" href="login">Sign In</a></li>
 		{/if}
 		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
 
