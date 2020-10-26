@@ -10,6 +10,7 @@ import {JOBS_COLLECTION} from "./constants";
 export const forceTokenRefresh = () => {
   const user = firebase.auth().currentUser;
   if (user) {
+
     return firebase.auth.currentUser.getIdToken(true);
   }
 }
